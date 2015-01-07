@@ -8,16 +8,14 @@
     <ul id="timeline"></ul>
     <script type="text/javascript">
       var timeline = $("#timeline");
-
       function load_timeline() {
-          $.getJSON("/stream", function(data) {
-              $.each(data, function() {
-                  $("<li>").html(this.text).prependTo(timeline);
-              });
-              load_timeline();
+        $.getJSON("/stream", function(data) {
+          $.each(data, function() {
+            $("<li>").html(this.text).prependTo(timeline);
           });
+          load_timeline();
+        });
       }
-
       setTimeout(load_timeline, 1000);
     </script>
   </body>
