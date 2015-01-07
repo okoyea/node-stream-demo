@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data Streamer</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  </head>
+  <body>
+    <ul id="timeline"></ul>
+    <script type="text/javascript">
+      var timeline = $("#timeline");
+
+      function load_timeline() {
+          $.getJSON("/stream", function(data) {
+              $.each(data, function() {
+                  $("<li>").html(this.text).prependTo(timeline);
+              });
+              load_timeline();
+          });
+      }
+
+      setTimeout(load_timeline, 1000);
+    </script>
+  </body>
+</html>
